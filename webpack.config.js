@@ -1,4 +1,5 @@
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 const package = require('./package.json');
 
 //-----------------------------------------------------------------------------
@@ -66,7 +67,20 @@ module.exports = (env, argv) => {
         '.ts', '.js',
       ],
     },
-    plugins:[]    
+    plugins:[],
+    optimization: {
+      minimize: true,
+      minimizer: [new TerserPlugin({
+        terserOptions: {
+          ecma: 6,
+          compress: true,
+          output: {
+            comments: false,
+            beautify: false
+          }
+       }
+     })]
+    }
   }
 
   // 開発時のみ
