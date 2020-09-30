@@ -24,5 +24,8 @@
     "build:node": "webpack --type node",
     "example": "gulp",
     "example:build": "gulp build"
+  },
+  "dependencies": {
+    "konva": "^7.1.3"
   }
 }

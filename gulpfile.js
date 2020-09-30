@@ -43,6 +43,11 @@ const copy = (done) => {
   done();
 }
 
+const js = (done) => {
+  src("example/**/*.js")
+    .pipe(dest("public"));
+}
+
 //-----------------------------------------------------------------------------
 // 開発サーバーを起動する
 //-----------------------------------------------------------------------------
@@ -66,10 +71,11 @@ exports.default = (done) => {
   server(done);
   watch("example/**/*.ejs", page);
   watch("browser/**/*.js", copy);
+  watch("example/**/*.js", js);
   watch("public/**/*", reload);
 }
 
 exports.build = series(
   clean,
-  parallel(page, copy)
+  parallel(page, copy, js)
 );

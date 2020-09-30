@@ -29,8 +29,6 @@ module.exports = (env, argv) => {
   // argv.typeにはbrowserかnodeのどちらかを指定する。指定しないと多分エラーになる
   const params = {browser, node}[argv.type];
 
-  console.log(params);
-
   const conf = {
     mode: mode,
 
@@ -39,7 +37,7 @@ module.exports = (env, argv) => {
         path: params.path,
         publicPath: '/',
         filename: params.filename,
-        library: package.name,
+        library: "Somali",
         libraryExport: '',
         libraryTarget: 'umd',
         globalObject: 'this',
