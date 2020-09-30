@@ -3,9 +3,10 @@
  *****************************************************************************/
 import Konva from 'konva';
 import { GUI } from 'dat.gui';
-import Coord from './Component/Coord';
-import Stage from './Component/Stage';
+import Coord from './Props/Coord';
+import Stage from './Props/Stage';
 import * as util from './Helper/util';
+import { Circle } from './Node/Shape';
 
 //-----------------------------------------------------------------------------
 // シーンの設定データ
@@ -35,7 +36,7 @@ export interface IOption {
 // シーン
 //-----------------------------------------------------------------------------
 export class Scene {
-  protected components = {
+  protected props = {
     coord: new Coord(),
     stage: new Stage(),
   }
@@ -62,8 +63,8 @@ export class Scene {
 
     this.initDOM();
 
-    this.components.stage.init({container: this.dom.graph, width: this.config.width, height: this.config.height, bgColor: this.config.bgColor});
-    this.components.coord.init(this.config.width, this.config.height, this.config.unit);
+    this.props.stage.init({container: this.dom.graph, width: this.config.width, height: this.config.height, bgColor: this.config.bgColor});
+    this.props.coord.init(this.config.width, this.config.height, this.config.unit);
 
     if (this.config.gui) {
       this._gui = new GUI({autoPlace:false});
@@ -73,15 +74,19 @@ export class Scene {
     const layer = new Konva.Layer();
 
     const rect = new Konva.Rect({
-      x:this.components.coord.x(0),
-      y: this.components.coord.y(0),
-      width: this.components.coord.u2px(1),
-      height:-this.components.coord.u2px(2),
+      x:this.props.coord.x(0),
+      y: this.props.coord.y(0),
+      width: this.props.coord.u2px(1),
+      height:-this.props.coord.u2px(2),
       fill:"red"
     });
+    
+    const circle = new Circle(this.props.coord);
+    circle.pos(0, 0).radius(1).fill("blue");
 
     layer.add(rect);
-    this.components.stage.add(layer);
+    layer.add(circle.node);
+    this.props.stage.add(layer);
 
   }
 
