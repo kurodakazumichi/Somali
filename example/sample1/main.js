@@ -1,8 +1,15 @@
-const config = new Somali.SceneConfig();
-config.id = "graph1";
-config.width = 700;
-new Somali.Scene(config);
+class Graph1 extends Somali.Scene {
+  constructor() {
+    super({id:"graph1"});
+  }
+}
 
-const config2 = new Somali.SceneConfig();
-config2.id = "graph2";
-new Somali.Scene(config2);
+class Graph2 extends Somali.Scene {
+  constructor() {
+    super({id: "graph2", gui:true})
+  }
+}
+
+new Graph1();
+new Graph2();
+
