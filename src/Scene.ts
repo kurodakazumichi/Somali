@@ -5,8 +5,9 @@ import Konva from 'konva';
 import { GUI } from 'dat.gui';
 import Coord from './Props/Coord';
 import Stage from './Props/Stage';
+import Shapes from './Props/Shapes';
 import * as util from './Helper/util';
-import { Circle } from './Node/Shape';
+import Node from './Node/Node';
 
 
 //-----------------------------------------------------------------------------
@@ -38,6 +39,7 @@ export default class Scene {
   protected props = {
     coord: new Coord(),
     stage: new Stage(),
+    shapes: new Shapes(),
   }
 
   private _gui:GUI|null = null;
@@ -56,6 +58,8 @@ export default class Scene {
     gui    : false,
   };
 
+  private layer:Konva.Layer;
+
   constructor(option:IOption) {
     this.config = Object.assign(this.config, option);
 
@@ -63,29 +67,30 @@ export default class Scene {
 
     this.props.stage.init({container: this.dom.graph, width: this.config.width, height: this.config.height});
     this.props.coord.init(this.config.width, this.config.height, this.config.unit);
+    this.props.shapes.init(this.props.coord);
 
     if (this.config.gui) {
       this._gui = new GUI({autoPlace:false});
       this.dom.gui?.appendChild(this._gui.domElement);
     }
 
-    const layer = new Konva.Layer();
+    this.layer = new Konva.Layer();
+    this.props.stage.add(this.layer);
 
-    const rect = new Konva.Rect({
-      x:this.props.coord.x(0),
-      y: this.props.coord.y(0),
-      width: this.props.coord.u2px(1),
-      height:-this.props.coord.u2px(2),
-      fill:"red"
-    });
+    const nodes = {
+      c: this.props.shapes.circle().pos(0, 0)
+    }
+
+    this.addNodes(nodes);
     
-    const circle = new Circle(this.props.coord);
-    circle.pos(0, 0).radius(1).fill("blue");
+    this.layer.draw();
 
-    layer.add(rect);
-    layer.add(circle.node);
-    this.props.stage.add(layer);
+  }
 
+  addNodes(nodes:{[key:string]:Node}) {
+    Object.values(nodes).map((node) => {
+      this.layer.add(node.node);
+    })
   }
 
   private initDOM() {
