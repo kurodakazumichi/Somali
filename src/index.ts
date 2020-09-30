@@ -1,7 +1,8 @@
 import Konva from 'konva';
 import { GUI } from 'dat.gui';
 import Coord from './Component/Coord';
-import Stage, { IConfig } from './Component/Stage';
+import Stage from './Component/Stage';
+import * as util from './Helper/util';
 
 export class SceneConfig {
   public id:string = "";
@@ -60,14 +61,12 @@ export class Scene {
 
     this.dom.root = document.getElementById(this.config.id) as HTMLDivElement;
 
-    this.dom.graph = document.createElement("div");
-    this.dom.graph.className = "graph";
+    this.dom.graph = util.div({className:"graph"});
     this.dom.root.appendChild(this.dom.graph);
+
     if (this.config.gui) {
-      this.dom.gui = document.createElement("div");
-      this.dom.gui.className = "gui";
+      this.dom.gui = util.div({className:"gui"});
       this.dom.root.appendChild(this.dom.gui);
     }
-
   }
 }
