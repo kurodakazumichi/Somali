@@ -7,7 +7,7 @@ import Konva from "konva";
 // Stage.initに渡す設定
 //-----------------------------------------------------------------------------
 export interface IConfig {
-  id:string,
+  container:HTMLDivElement|null,
   width:number;
   height:number;
   bgColor:string;
@@ -56,9 +56,9 @@ export default class Stage
   {
     if (!this.config) return null;
 
-    const { id, width, height, bgColor } = this.config;
+    const { container, width, height, bgColor } = this.config;
 
-    const container = document.getElementById(id) as HTMLDivElement;
+    if (!container) return null;
 
     container.style.backgroundColor = bgColor;
     container.style.width  = `${width}px`;
