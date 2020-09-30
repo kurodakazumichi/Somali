@@ -46,6 +46,7 @@ const copy = (done) => {
 const js = (done) => {
   src("example/**/*.js")
     .pipe(dest("public"));
+  done();
 }
 
 //-----------------------------------------------------------------------------
@@ -65,6 +66,7 @@ const server = (done) => {
 const reload = (done) => {
   src("public/**/*")
     .pipe(connect.reload());
+  done();
 }
 
 exports.default = (done) => {
