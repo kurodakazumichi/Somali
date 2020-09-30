@@ -10,7 +10,6 @@ import Groups from './Props/Groups';
 import * as util from './Helper/util';
 import Node from './Node/Node';
 
-
 //-----------------------------------------------------------------------------
 // シーンの設定データ
 //-----------------------------------------------------------------------------
@@ -20,6 +19,7 @@ export interface IConfig {
   height  :number;
   unit    :number;
   gui     :boolean;
+  update  :boolean;
 }
 
 //-----------------------------------------------------------------------------
@@ -31,12 +31,15 @@ export interface IOption {
   height? :number;
   unit?   :number;
   gui?    :boolean;
+  update? :boolean;
 }
 
 //-----------------------------------------------------------------------------
 // シーン
 //-----------------------------------------------------------------------------
-export default class Scene {
+export default class Scene 
+{
+  /** 小道具 */
   protected props = {
     coord: new Coord(),
     stage: new Stage(),
@@ -44,79 +47,63 @@ export default class Scene {
     groups: new Groups(),
   }
 
-  private _gui:GUI|null = null;
-
+  /** Sceneが扱うDOMのリスト */
   private dom:{root: HTMLDivElement|null, graph:HTMLDivElement|null, gui:HTMLDivElement|null} = {
     root : null,
     graph: null,
     gui  : null,
   }
 
+  /** シーンの設定 */
   private config:IConfig = {
     id     : "",
     width  : 500,
     height : 500,
     unit   : 50,
     gui    : false,
+    update : true,
   };
 
-  private layer:Konva.Layer;
+  /** Konva.Layerインスタンス */
+  private layer:Konva.Layer|null = null;
 
-  get option():IOption {
-    return {
-      id:"container"
-    }
-  }
+  /** dat.guiインスタンス */
+  private _gui:GUI|null = null;
 
-  initNodes(shapes:Shapes, groups:Groups) {
-    return {}
-  }
-
-  initGui(gui:GUI) {
-
-  }
-
-  private nodes:{[key:string]:Node} = {};
-
-  constructor() {
+  /** グラフに表示するNodeリスト */
+  private nodes:{[key:string]:Node} = {};  
+  
+  //---------------------------------------------------------------------------
+  // コンストラクタ
+  //---------------------------------------------------------------------------
+  constructor() 
+  {
     this.execute = this.execute.bind(this);
     this.config = Object.assign(this.config, this.option);
-
-    this.initDOM();
-
-    this.props.stage.init({container: this.dom.graph, width: this.config.width, height: this.config.height});
-    this.props.coord.init(this.config.width, this.config.height, this.config.unit);
-    this.props.shapes.init(this.props.coord);
-    this.props.groups.init(this.props.coord, this.props.shapes);
-    this.layer = new Konva.Layer();
   }
 
-  build() {
+  //---------------------------------------------------------------------------
+  // ビルド関連
+  //---------------------------------------------------------------------------  
+  build() 
+  {
+    this.initDOM();
+    this.initProps();
+
+    this.layer = new Konva.Layer();
+    this.props.stage.add(this.layer);
+
     if (this.config.gui) {
       this._gui = new GUI({autoPlace:false});
       this.dom.gui?.appendChild(this._gui.domElement);
-    }
-
-
-    this.props.stage.add(this.layer);
-
-    if (this._gui) {
       this.initGui(this._gui);
     }
     
     this.nodes = this.initNodes(this.props.shapes, this.props.groups);
-
     this.addNodes(this.nodes);
     
-    this.layer.draw();
-
+    this.draw();
     this.execute();
-  }
-
-  addNodes(nodes:{[key:string]:Node}) {
-    Object.values(nodes).map((node) => {
-      this.layer.add(node.node);
-    })
   }
 
   private initDOM() {
@@ -132,20 +119,57 @@ export default class Scene {
     }
   }
 
+  private initProps() {
+    this.props.stage.init({container: this.dom.graph, width: this.config.width, height: this.config.height});
+    this.props.coord.init(this.config.width, this.config.height, this.config.unit);
+    this.props.shapes.init(this.props.coord);
+    this.props.groups.init(this.props.coord, this.props.shapes);
+  }
+
+  draw() {
+    this.layer?.draw();
+  }
+
+  execute() 
+  {
+    if (!this.config.update) return;
+    this.update();
+    this.draw();
+    requestAnimationFrame(this.execute);
+  }  
+
+  //---------------------------------------------------------------------------
+  // 派生先で実装する事を想定しているテンプレートメソッド
+  //---------------------------------------------------------------------------
+
+  /** Sceneのオプションオブジェクトを返す */
+  get option():IOption {
+    return {
+      id:"container"
+    }
+  }
+
+  /** グラフに表示するNodeを生成し、オブジェクトで返す */
+  initNodes(shapes:Shapes, groups:Groups) {
+    return {}
+  }
+
+  /** dat.guiの初期化用メソッド */
+  initGui(gui:GUI) {
+
+  }
+
+  /** 毎フレーム呼ばれるメソッド、オプションでupdate:falseにすると呼ばれない */
   update() {
 
   }
 
-  draw() {
-    this.layer.draw();
+  //---------------------------------------------------------------------------
+  // Util
+  //---------------------------------------------------------------------------  
+  addNodes(nodes:{[key:string]:Node}) {
+    Object.values(nodes).map((node) => {
+      this.layer?.add(node.node);
+    })
   }
-
-  execute() {
-    this.update();
-    this.draw();
-    requestAnimationFrame(this.execute);
-  }
-
-
-
 }
