@@ -3,7 +3,8 @@
  * 
  * モードに対応した色の管理と、モード値をセッション経由で管理する。
  *****************************************************************************/
-interface IColorTable {
+interface IColorTable 
+{
   backGround:string;
   axisXY:string;
   grid:string;
