@@ -2,6 +2,7 @@
  * Konva.Stageに該当するクラス
  *****************************************************************************/
 import Konva from "konva";
+import sColor from '../System/sColor';
 
 //-----------------------------------------------------------------------------
 // Stage.initに渡す設定
@@ -10,7 +11,6 @@ export interface IConfig {
   container:HTMLDivElement|null,
   width:number;
   height:number;
-  bgColor:string;
 }
 
 //-----------------------------------------------------------------------------
@@ -56,11 +56,11 @@ export default class Stage
   {
     if (!this.config) return null;
 
-    const { container, width, height, bgColor } = this.config;
+    const { container, width, height } = this.config;
 
     if (!container) return null;
 
-    container.style.backgroundColor = bgColor;
+    container.style.backgroundColor = sColor.backGround;
     container.style.width  = `${width}px`;
     container.style.height = `${height}px`;
 
