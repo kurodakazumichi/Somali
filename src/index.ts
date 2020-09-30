@@ -1,6 +1,6 @@
 import Konva from 'konva';
-import sCoord from './System/sCoord';
-import sStage from './System/sStage';
+import Coord from './Component/Coord';
+import Stage from './Component/Stage';
 
 export class SceneConfig {
   public id:string = "";
@@ -11,31 +11,28 @@ export class SceneConfig {
 }
 
 export class Scene {
-  protected system = {
-    coord: new sCoord(),
-    stage: new sStage(),
+  protected components = {
+    coord: new Coord(),
+    stage: new Stage(),
   }
 
   constructor(config:SceneConfig) {
 
-    
-    this.system.stage.init(config);
-
-
-    this.system.coord.init(config.width, config.height, config.unit);
+    this.components.stage.init(config);
+    this.components.coord.init(config.width, config.height, config.unit);
 
     const layer = new Konva.Layer();
 
     const rect = new Konva.Rect({
-      x:this.system.coord.x(0),
-      y: this.system.coord.y(0),
-      width: this.system.coord.u2px(1),
-      height:-this.system.coord.u2px(2),
+      x:this.components.coord.x(0),
+      y: this.components.coord.y(0),
+      width: this.components.coord.u2px(1),
+      height:-this.components.coord.u2px(2),
       fill:"red"
     });
 
     layer.add(rect);
-    this.system.stage.add(layer);
+    this.components.stage.add(layer);
 
   }
 }
