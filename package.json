@@ -6,16 +6,12 @@
   "author": "kazumichi kuroda <kazumichi96@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "copy-webpack-plugin": "^6.1.1",
-    "ejs-html-loader": "^4.0.1",
-    "ejs-plain-loader": "^1.4.1",
-    "globule": "^1.3.2",
+    "ejs": "^3.1.5",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
+    "gulp-connect": "^5.7.0",
     "gulp-front-matter": "^1.3.0",
     "gulp-rename": "^2.0.0",
-    "html-loader": "^1.3.1",
-    "html-webpack-plugin": "^4.5.0",
     "layout1": "^1.1.0",
     "ts-loader": "^8.0.4",
     "typescript": "^4.0.3",
@@ -24,9 +20,9 @@
   },
   "scripts": {
     "dev:browser": "webpack --mode development --type browser",
-    "dev:node": "webpack --mode development --type node",
     "build:browser": "webpack --type browser",
     "build:node": "webpack --type node",
-    "example": "gulp build"
+    "example": "gulp",
+    "example:build": "gulp build"
   }
 }

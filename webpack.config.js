@@ -39,7 +39,7 @@ module.exports = (env, argv) => {
         path: params.path,
         publicPath: '/',
         filename: params.filename,
-        library: "Somali",
+        library: package.name,
         libraryExport: '',
         libraryTarget: 'umd',
         globalObject: 'this',
