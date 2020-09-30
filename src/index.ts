@@ -7,6 +7,9 @@ import Coord from './Props/Coord';
 import Stage from './Props/Stage';
 import * as util from './Helper/util';
 import { Circle } from './Node/Shape';
+import sColor from './System/sColor';
+
+export { sColor };
 
 //-----------------------------------------------------------------------------
 // シーンの設定データ
@@ -16,7 +19,6 @@ export interface IConfig {
   width   :number;
   height  :number;
   unit    :number;
-  bgColor :string;
   gui     :boolean;
 }
 
@@ -28,7 +30,6 @@ export interface IOption {
   width?  :number;
   height? :number;
   unit?   :number;
-  bgColor?:string;
   gui?    :boolean;
 }
 
@@ -54,7 +55,6 @@ export class Scene {
     width  : 500,
     height : 500,
     unit   : 50,
-    bgColor: "black",
     gui    : false,
   };
 
@@ -63,7 +63,7 @@ export class Scene {
 
     this.initDOM();
 
-    this.props.stage.init({container: this.dom.graph, width: this.config.width, height: this.config.height, bgColor: this.config.bgColor});
+    this.props.stage.init({container: this.dom.graph, width: this.config.width, height: this.config.height});
     this.props.coord.init(this.config.width, this.config.height, this.config.unit);
 
     if (this.config.gui) {
