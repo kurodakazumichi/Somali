@@ -62,8 +62,25 @@ export default class Scene {
 
   private layer:Konva.Layer;
 
-  constructor(option:IOption) {
-    this.config = Object.assign(this.config, option);
+  get option():IOption {
+    return {
+      id:"container"
+    }
+  }
+
+  initNodes(shapes:Shapes, groups:Groups) {
+    return {}
+  }
+
+  initGui(gui:GUI) {
+
+  }
+
+  private nodes:{[key:string]:Node} = {};
+
+  constructor() {
+    this.execute = this.execute.bind(this);
+    this.config = Object.assign(this.config, this.option);
 
     this.initDOM();
 
@@ -71,24 +88,29 @@ export default class Scene {
     this.props.coord.init(this.config.width, this.config.height, this.config.unit);
     this.props.shapes.init(this.props.coord);
     this.props.groups.init(this.props.coord, this.props.shapes);
+    this.layer = new Konva.Layer();
+  }
 
+  build() {
     if (this.config.gui) {
       this._gui = new GUI({autoPlace:false});
       this.dom.gui?.appendChild(this._gui.domElement);
     }
 
-    this.layer = new Konva.Layer();
+
     this.props.stage.add(this.layer);
 
-    const nodes = {
-      c: this.props.shapes.circle().pos(0, 0),
-      grid: this.props.groups.grid(),
+    if (this._gui) {
+      this.initGui(this._gui);
     }
+    
+    this.nodes = this.initNodes(this.props.shapes, this.props.groups);
 
-    this.addNodes(nodes);
+    this.addNodes(this.nodes);
     
     this.layer.draw();
 
+    this.execute();
   }
 
   addNodes(nodes:{[key:string]:Node}) {
@@ -109,4 +131,21 @@ export default class Scene {
       this.dom.root.appendChild(this.dom.gui);
     }
   }
+
+  update() {
+
+  }
+
+  draw() {
+    this.layer.draw();
+  }
+
+  execute() {
+    this.update();
+    this.draw();
+    requestAnimationFrame(this.execute);
+  }
+
+
+
 }
