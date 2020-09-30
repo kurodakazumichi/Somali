@@ -1,0 +1,11 @@
+<head>
+  <title><%= file.data.title %></title>
+  <script src="../js/somali.min.js"></script>
+</head>
+<body class="page">
+  <%- file.contents %>
+
+  <%_ if (file.data.js) { for (let js of file.data.js) { _%>
+    <script src="<%= js %>"></script>
+  <%_ }} _%>
+</body>

@@ -1,0 +1,10 @@
+<head>
+  <title>Top</title>
+</head>
+<body class="page">
+  <%- file.contents %>
+
+  <%_ if (file.data.js) { for (let js of file.data.js) { _%>
+    <script src="<%= js %>"></script>
+  <%_ }} _%>
+</body>
