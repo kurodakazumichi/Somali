@@ -1,15 +1,14 @@
 class Graph1 extends Somali.Scene {
-  constructor() {
-    super({id:"graph1"});
+  get option() {
+    return {id:"graph1"}
+  }
+
+  initNodes(shapes, groups) {
+    return {
+      grid: groups.grid()
+    }
   }
 }
 
-class Graph2 extends Somali.Scene {
-  constructor() {
-    super({id: "graph2", gui:true})
-  }
-}
-
-new Graph1();
-new Graph2();
+new Graph1().build();
 

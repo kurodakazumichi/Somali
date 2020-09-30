@@ -49,6 +49,12 @@ const js = (done) => {
   done();
 }
 
+const css = (done) => {
+  src("example/**/*.css")
+    .pipe(dest("public"));
+  done();
+}
+
 //-----------------------------------------------------------------------------
 // 開発サーバーを起動する
 //-----------------------------------------------------------------------------
@@ -74,10 +80,11 @@ exports.default = (done) => {
   watch("example/**/*.ejs", page);
   watch("browser/**/*.js", copy);
   watch("example/**/*.js", js);
+  watch("example/**/*.css", css);
   watch("public/**/*", reload);
 }
 
 exports.build = series(
   clean,
-  parallel(page, copy, js)
+  parallel(page, copy, js, css)
 );
