@@ -121,16 +121,18 @@ export default abstract class Node
     return this;
   }
 
-  offsetX(v:number) {
-    this.node.offsetX(-this.coord.u2px(v));
+  offsetX(v:number, convert:boolean = false) {
+    v = (convert)? this.coord.u2px(v) : v;
+    this.node.offsetX(-v);
     return this;
   }
-  offsetY(v:number) {
-    this.node.offsetY(this.coord.u2px(v));
+  offsetY(v:number, convert:boolean = false) {
+    v = (convert)? this.coord.u2px(v) : v;
+    this.node.offsetY(v);
     return this;
   }
-  offset(x:number, y:number) {
-    return this.offsetX(x).offsetY(y);
+  offset(x:number, y:number, convert:boolean = false) {
+    return this.offsetX(x, convert).offsetY(y, convert);
   }
 
   destroy() {

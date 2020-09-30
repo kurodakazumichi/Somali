@@ -6,6 +6,7 @@ import { GUI } from 'dat.gui';
 import Coord from './Props/Coord';
 import Stage from './Props/Stage';
 import Shapes from './Props/Shapes';
+import Groups from './Props/Groups';
 import * as util from './Helper/util';
 import Node from './Node/Node';
 
@@ -40,6 +41,7 @@ export default class Scene {
     coord: new Coord(),
     stage: new Stage(),
     shapes: new Shapes(),
+    groups: new Groups(),
   }
 
   private _gui:GUI|null = null;
@@ -68,6 +70,7 @@ export default class Scene {
     this.props.stage.init({container: this.dom.graph, width: this.config.width, height: this.config.height});
     this.props.coord.init(this.config.width, this.config.height, this.config.unit);
     this.props.shapes.init(this.props.coord);
+    this.props.groups.init(this.props.coord, this.props.shapes);
 
     if (this.config.gui) {
       this._gui = new GUI({autoPlace:false});
@@ -78,7 +81,8 @@ export default class Scene {
     this.props.stage.add(this.layer);
 
     const nodes = {
-      c: this.props.shapes.circle().pos(0, 0)
+      c: this.props.shapes.circle().pos(0, 0),
+      grid: this.props.groups.grid(),
     }
 
     this.addNodes(nodes);
