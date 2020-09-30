@@ -1,18 +1,39 @@
+/******************************************************************************
+ * グラフやGUIを統括するシーンクラス
+ *****************************************************************************/
 import Konva from 'konva';
 import { GUI } from 'dat.gui';
 import Coord from './Component/Coord';
 import Stage from './Component/Stage';
 import * as util from './Helper/util';
 
-export class SceneConfig {
-  public id:string = "";
-  public width:number = 500;
-  public height:number = 500;
-  public unit:number = 50;
-  public bgColor:string = "black";
-  public gui:boolean = false;
+//-----------------------------------------------------------------------------
+// シーンの設定データ
+//-----------------------------------------------------------------------------
+export interface IConfig {
+  id      :string;
+  width   :number;
+  height  :number;
+  unit    :number;
+  bgColor :string;
+  gui     :boolean;
 }
 
+//-----------------------------------------------------------------------------
+// シーンのオプションデータ
+//-----------------------------------------------------------------------------
+export interface IOption {
+  id      :string;
+  width?  :number;
+  height? :number;
+  unit?   :number;
+  bgColor?:string;
+  gui?    :boolean;
+}
+
+//-----------------------------------------------------------------------------
+// シーン
+//-----------------------------------------------------------------------------
 export class Scene {
   protected components = {
     coord: new Coord(),
@@ -27,17 +48,24 @@ export class Scene {
     gui  : null,
   }
 
-  private config:SceneConfig;
+  private config:IConfig = {
+    id     : "",
+    width  : 500,
+    height : 500,
+    unit   : 50,
+    bgColor: "black",
+    gui    : false,
+  };
 
-  constructor(config:SceneConfig) {
-    this.config = config;
+  constructor(option:IOption) {
+    this.config = Object.assign(this.config, option);
 
     this.initDOM();
 
-    this.components.stage.init({container: this.dom.graph, width: config.width, height: config.height, bgColor: config.bgColor});
-    this.components.coord.init(config.width, config.height, config.unit);
+    this.components.stage.init({container: this.dom.graph, width: this.config.width, height: this.config.height, bgColor: this.config.bgColor});
+    this.components.coord.init(this.config.width, this.config.height, this.config.unit);
 
-    if (config.gui) {
+    if (this.config.gui) {
       this._gui = new GUI({autoPlace:false});
       this.dom.gui?.appendChild(this._gui.domElement);
     }
