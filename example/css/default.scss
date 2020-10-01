@@ -65,7 +65,7 @@ article {
   ul {
     padding-left: 1em;
     
-    li {
+    li:not([class]) {
       list-style-type: circle;
     }
   }
