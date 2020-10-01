@@ -27,6 +27,8 @@ footer {
 
 article {
   padding:1em;
+  width:900px;
+  margin:0 auto;
 
   h1 {
     font-size:50px;
@@ -36,7 +38,7 @@ article {
       content: "";
       display: block;
       height: 5px;
-      margin-top:5px;
+      margin:5px 0 1em 0;
       background: linear-gradient(to right, #43C6AC 0%, #d9e653 100%);
     }
   }
@@ -44,6 +46,7 @@ article {
   h2 {
     font-size:40px;
     font-weight: 600;
+    margin-top: 3em;
   
     &::after {
       content: "";
