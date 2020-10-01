@@ -45,6 +45,14 @@ export class Line extends Shape
   closed(v:boolean) {
     this.shape.closed(v); return this;
   }
+
+  lineCap(cap:string) {
+    this.shape.lineCap(cap); return this;
+  }
+
+  lineJoin(join:string) {
+    this.shape.lineJoin(join); return this;
+  }
 }
 
 //-----------------------------------------------------------------------------
@@ -72,6 +80,12 @@ export class Arrow extends Shape
   color(v:string) {
     return this.fill(v).stroke(v);
   }
+  lineCap(cap:string) {
+    this.shape.lineCap(cap); return this;
+  }
+  lineJoin(join:string) {
+    this.shape.lineJoin(join); return this;
+  }  
 }
 
 //-----------------------------------------------------------------------------

@@ -17,7 +17,9 @@ class Graph1 extends Somali.Scene
       stroke: "#FFF",
       strokeWidth: 1,
       dash:0,
-      closed:false
+      closed:false,
+      lineCap:"butt",
+      lineJoin:"miter",
     }
   }
 
@@ -43,6 +45,8 @@ class Graph1 extends Somali.Scene
     config.add(this.params, "strokeWidth");
     config.add(this.params, "dash");
     config.add(this.params, "closed");
+    config.add(this.params, "lineCap", ["butt", "round", "square"]);
+    config.add(this.params, "lineJoin", ["miter", "round", "square"]);
     config.open();
   }
 
@@ -61,6 +65,8 @@ class Graph1 extends Somali.Scene
       .strokeWidth(this.params.strokeWidth)
       .dash(this.params.dash)
       .closed(this.params.closed)
+      .lineCap(this.params.lineCap)
+      .lineJoin(this.params.lineJoin);
   }
 
   get points() {

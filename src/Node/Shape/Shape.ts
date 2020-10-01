@@ -18,7 +18,8 @@ export default abstract class Shape extends Node {
     this.node.setAttr("stroke", color); return this;
   }
 
-  strokeWidth(width:number) {
+  strokeWidth(width:number, convert:boolean = false) {
+    width = (convert)? this.coord.u2px(width) : width;
     this.node.setAttr("strokeWidth", width); return this;
   }
 
