@@ -7,6 +7,7 @@ const del = require('gulp-clean');
 const frontMatter = require('gulp-front-matter');
 const layout = require('layout1');
 const connect = require('gulp-connect');
+const sass = require('gulp-sass');
 
 //-----------------------------------------------------------------------------
 // example以下にあるejsをhtmlに変換する
@@ -55,6 +56,13 @@ const css = (done) => {
   done();
 }
 
+const scss = (done) => {
+  src("example/**/*.scss")
+    .pipe(sass())
+    .pipe(dest("public"));
+  done();
+}
+
 //-----------------------------------------------------------------------------
 // 開発サーバーを起動する
 //-----------------------------------------------------------------------------
@@ -81,10 +89,11 @@ exports.default = (done) => {
   watch("browser/**/*.js", copy);
   watch("example/**/*.js", js);
   watch("example/**/*.css", css);
+  watch("example/**/*.scss", scss);
   watch("public/**/*", reload);
 }
 
 exports.build = series(
   clean,
-  parallel(page, copy, js, css)
+  parallel(page, copy, js, css, scss)
 );
