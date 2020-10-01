@@ -121,17 +121,17 @@ export default abstract class Node
     return this;
   }
 
-  offsetX(v:number, convert:boolean = false) {
+  offsetX(v:number, convert:boolean = true) {
     v = (convert)? this.coord.u2px(v) : v;
     this.node.offsetX(-v);
     return this;
   }
-  offsetY(v:number, convert:boolean = false) {
+  offsetY(v:number, convert:boolean = true) {
     v = (convert)? this.coord.u2px(v) : v;
     this.node.offsetY(v);
     return this;
   }
-  offset(x:number, y:number, convert:boolean = false) {
+  offset(x:number, y:number, convert:boolean = true) {
     return this.offsetX(x, convert).offsetY(y, convert);
   }
 

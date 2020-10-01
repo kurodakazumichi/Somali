@@ -98,8 +98,8 @@ export default class Grid extends Group {
       const label = this.shapes.text(p.text)
         .pos(p.x, p.y)
         .fontSize(15)
-        .offsetX(p.offsetX)
-        .offsetY(p.offsetY)
+        .offsetX(p.offsetX, false)
+        .offsetY(p.offsetY, false)
         .italic();
 
       this.labels.push(label);
