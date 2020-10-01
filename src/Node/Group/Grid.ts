@@ -61,7 +61,7 @@ export default class Grid extends Group {
 
   /** グリッド線を作成 */
   private createLine(points:number[]) {
-    return this.shapes.solidLine()
+    return this.shapes.line()
       .strokeWidth(1)
       .stroke(sColor.grid)
       .points(points);     

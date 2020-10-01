@@ -49,43 +49,22 @@ export default class Shapes {
       .pointerLength(0.1)
       .strokeWidth(1);
   }
-  solidLine() {
+  circle() {
+    return new Shape.Circle(this.coord)
+      .radius(1)
+      .stroke(sColor.main)
+  }
+  rect() {
+    return new Shape.Rect(this.coord)
+      .width(1)
+      .height(1)
+      .strokeWidth(2)
+      .stroke(sColor.main)
+  }  
+  line() {
     return new Shape.Line(this.coord)
       .stroke(sColor.main)
       .strokeWidth(2);
-  }
-  // 補助線
-  auxLine() {
-    return new Shape.Line(this.coord)
-      .stroke(sColor.green)
-      .strokeWidth(1);
-  }
-  brokenLine() {
-    return new Shape.Line(this.coord)
-      .stroke(sColor.main)
-      .strokeWidth(1)
-      .dash(0.1);
-  }
-
-  point() {
-    return new Shape.Circle(this.coord)
-      .radius(0.1)
-      .fill(sColor.green)
-  }
-  draggablePoint() {
-    return new Shape.Circle(this.coord)
-      .radius(0.1)
-      .fill(sColor.red)
-      .draggable()
-  }
-
-  text(v:string = "A") {
-    return new Shape.Text(this.coord)
-      .text(v)
-      .fontSize(16)
-      .offset(0.1, -0.1)
-      .fontFamily("Hiragino Maru Gothic ProN, meiryo, arial, sans-serif")
-      .fill(sColor.text);
   }
   arrow() {
     return new Shape.Arrow(this.coord)
@@ -94,6 +73,14 @@ export default class Shapes {
       .color(sColor.main)
       .strokeWidth(2)
   }
+  text(v:string = "A") {
+    return new Shape.Text(this.coord)
+      .text(v)
+      .fontSize(16)
+      .offset(0.1, -0.1)
+      .fontFamily("Hiragino Maru Gothic ProN, meiryo, arial, sans-serif")
+      .fill(sColor.text);
+  }  
   star() {
     return new Shape.Star(this.coord)
       .fill(sColor.yellow)
@@ -109,16 +96,5 @@ export default class Shapes {
       .radius(0.5)
       .angle(90)
   }
-  circle() {
-    return new Shape.Circle(this.coord)
-      .radius(1)
-      .stroke(sColor.main)
-  }
-  rect() {
-    return new Shape.Rect(this.coord)
-      .width(1)
-      .height(1)
-      .strokeWidth(2)
-      .stroke(sColor.main)
-  }
+
 }
