@@ -1,20 +1,32 @@
-<head>
-  <title><%= file.data.title %> | Somali</title>
-  <script src="../../js/somali.js"></script>
-  <script src="../../venders/highlight/highlight.pack.js"></script>
-  
-  <link rel="stylesheet" href="../../venders/highlight/atom-one-dark.css">
-  <link rel="stylesheet" href="../../css/default.css">
-</head>
-<body class="page">
-  <article>
-    <h1><%= file.data.title %></h1>
-    <%- file.contents %>
-  </article>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= file.data.title %> | Somali</title>
+    <script src="../../js/somali.js"></script>
+    <link rel="stylesheet" href="../../css/default.css">
 
-  
-  <%_ if (file.data.js) { for (let js of file.data.js) { _%>
-    <script src="<%= js %>"></script>
-  <%_ }} _%>
-  <script>hljs.initHighlightingOnLoad();</script>
-</body>
+    <%# vender系のjs,cssの読み込み %>
+    <script src="../../venders/highlight/highlight.pack.js"></script>
+    <link rel="stylesheet" href="../../venders/highlight/atom-one-dark.css">    
+  </head>
+  <body>
+    <header>
+      <a href="../../index.html">HOME</a>
+    </header>
+    <main>
+      <article>
+        <h1><%= file.data.title %></h1>
+        <%- file.contents %>
+      </article>
+    </main>
+
+    <footer>
+      <span>無職の学び舎 | Nekonecode</span>
+    </footer>
+    
+    <%_ if (file.data.js) { for (let js of file.data.js) { _%>
+      <script src="<%= js %>"></script>
+    <%_ }} _%>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
