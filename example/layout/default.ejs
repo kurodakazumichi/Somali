@@ -6,7 +6,10 @@
   <link rel="stylesheet" href="../../css/default.css">
 </head>
 <body class="page">
-  <%- file.contents %>
+  <article>
+    <h1><%= file.data.title %></h1>
+    <%- file.contents %>
+  </article>
 
   <script>hljs.initHighlightingOnLoad();</script>
   <%_ if (file.data.js) { for (let js of file.data.js) { _%>

@@ -1,0 +1,138 @@
+---
+title: 概要
+js: 
+  - main.js
+---
+<p><code>Somali</code>はCanvasでサクッとグラフを書くためのライブラリです。</p>
+<h2>Somaliを使う</h2>
+<div id="container"></div>
+<pre><code class='language-html' lang='html'>&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class='language-javascript' lang='javascript'>class Graph1 extends Somali.Scene {}
+new Graph1().build();
+</code></pre>
+
+
+
+<ul>
+  <li>コンテナを用意する</li>
+  <li><code>Somali.Scene</code>を継承したクラス<code>Graph1</code>を作成する</li>
+  <li><code>new Graph().build()</code>とするとコンテナ内にグラフが作成される。</li>
+</ul>
+<p>&nbsp;</p>
+
+<p>デフォルトでは`id=&quot;container&quot;の要素をコンテナとして使用します。</p>
+
+<h2>図形を描く</h2>
+
+<div id="graph2"></div>
+
+<pre><code class='language-html' lang='html'>&lt;div id=&quot;graph2&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class='language-javascript' lang='javascript'>class Graph2 extends Somali.Scene {
+  get option() {
+    return {id:&quot;graph2&quot;}
+  }
+
+  initNodes(shapes, groups) {
+    return {
+      grid: groups.grid(),
+      circle: shapes.circle().pos(0, 0).radius(3)
+    }
+  }
+}
+</code></pre>
+<p>&nbsp;</p>
+<p><code>Somali</code>で図形やグリッドなどを表示する場合は、クラス内に<code>initNodes</code>というメソッドを定義します。</p>
+<p>このメソッドの引数には<code>shapes</code>と<code>groups</code>という図形を描画するための小道具が渡さるので、
+この<code>shapes</code>や<code>groups</code>を使って図形を作成し、作成した図形のリストを返却します。</p>
+<p>またデフォルトではコンテナとして<code>id=&quot;container&quot;</code>の要素が使われると説明しましたが、<code>get option() {}</code>を定義し、オプションでコンテナとして扱う要素の<code>id</code>を指定する事ができます。</p>
+<p>&nbsp;</p>
+
+
+<h2>guiからパラメータを操作する</h2>
+<div id="graph3"></div>
+<pre><code class='language-html' lang='html'>&lt;div id=&quot;graph3&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class='language-javascript' lang='javascript'>class Graph3 extends Somali.Scene 
+{
+  get option() {
+    return {id:&quot;graph3&quot;, gui: true}
+  }
+
+  constructor() {
+    super();
+    this.params = {
+      x:0,
+      y:0,
+      r:1,
+    }
+  }  
+
+  initGui(gui) {
+    gui.add(this.params, &quot;x&quot;).step(0.01);
+    gui.add(this.params, &quot;y&quot;).step(0.01);
+    gui.add(this.params, &quot;r&quot;).step(0.01);
+  }
+
+  initNodes(shapes, groups) {
+    return {
+      grid: groups.grid(),
+      circle: shapes.circle().pos(0, 0).radius(this.params.r),
+    }
+  }
+
+  update() {
+    this.nodes.circle
+      .pos(this.params.x, this.params.y)
+      .radius(this.params.r);
+  }
+}
+</code></pre>
+
+<p><code>Somali</code>では<a href='https://github.com/dataarts/dat.gui'>dat.gui</a>を使う事ができます。</p>
+<ul>
+<li><p>コンストラクタ内でGUIで扱うデータを定義する</p>
+</li>
+<li><p><code>initGUI</code>を定義し、その中でデータとGUIを関連付けます。
+initGUI<code>の引数には</code>dat.gui`のインスタンスが渡ってきます。</p>
+</li>
+<li><p><code>update</code>は毎フレームコールされるメソッドです、<code>this.nodes</code>で<code>initNodes</code>で作成した図形にアクセスできます。</p>
+</li>
+</ul>
+
+
+<h2>アニメーション</h2>
+<div id="graph4"></div>
+
+<pre><code class='language-html' lang='html'>&lt;div id=&quot;graph4&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class='language-javascript' lang='javascript'>class Graph4 extends Somali.Scene 
+{
+  get option() {
+    return {id:&quot;graph4&quot;}
+  }
+
+  constructor() {
+    super();
+  }  
+
+  initNodes(shapes, groups) {
+    return {
+      grid: groups.grid(),
+      circle: shapes.circle().pos(0, 0).radius(2).fill(Somali.sColor.red),
+    }
+  }
+
+  update() {
+    this.timer += 0.05;
+
+
+    this.nodes.circle
+      .pos(Math.sin(this.timer), Math.cos(this.timer))
+      .radius(Math.abs(Math.sin(this.timer)));
+  }
+}
+</code></pre>
+<p><code>update</code>メソッドの中で図形のパラメータを更新する事でアニメーションを実装する事もできます。</p>
+<p><code>Somali.Scene</code>には<code>timer</code>という変数が用意されているので、今回はこの<code>timer</code>を使って簡単なアニメーションを作ってみました。</p>

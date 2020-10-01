@@ -1,1 +1,55 @@
 @import "node_modules/reset-css/sass/reset";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;600;700&display=swap');
+
+body {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size:26px;
+}
+
+article {
+  padding:1em;
+}
+
+h1 {
+  font-size:60px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size:50px;
+  font-weight: 600;
+}
+
+p {
+  line-height: 2em;
+  margin-bottom: 1em;
+
+  code {
+    background: #eee;
+    border:1px solid #ddd;
+    border-radius: 5px;
+    padding:2px;
+  }
+}
+
+pre {
+  code {
+    border: 1px solid #ddd;
+    margin-bottom: 2em;
+    font-size:23px;
+    line-height: 1.5em;
+  }
+}
+
+ul {
+  padding-left: 1em;
+  li {
+    list-style-type: circle;
+    line-height: 1.5em;
+  }
+}
+.somali {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
