@@ -43,7 +43,9 @@ class Graph3 extends Somali.Scene
   }
 
   update() {
-    this.nodes.circle.pos(this.params.x, this.params.y).radius(this.params.r);
+    this.nodes.circle
+      .pos(this.params.x, this.params.y)
+      .radius(this.params.r);
   }
 }
 

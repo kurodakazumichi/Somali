@@ -2,7 +2,8 @@
   <title><%= file.data.title %></title>
   <script src="../../js/somali.js"></script>
   <script src="../../venders/highlight/highlight.pack.js"></script>
-  <link rel="stylesheet" href="../../venders/highlight/default.css">
+  
+  <link rel="stylesheet" href="../../venders/highlight/atom-one-dark.css">
   <link rel="stylesheet" href="../../css/default.css">
 </head>
 <body class="page">
@@ -11,8 +12,9 @@
     <%- file.contents %>
   </article>
 
-  <script>hljs.initHighlightingOnLoad();</script>
+  
   <%_ if (file.data.js) { for (let js of file.data.js) { _%>
     <script src="<%= js %>"></script>
   <%_ }} _%>
+  <script>hljs.initHighlightingOnLoad();</script>
 </body>

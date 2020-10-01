@@ -4,24 +4,23 @@ js:
   - main.js
 ---
 <p><code>Somali</code>はCanvasでサクッとグラフを書くためのライブラリです。</p>
+
 <h2>Somaliを使う</h2>
+
 <div id="container"></div>
-<pre><code class='language-html' lang='html'>&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;
-</code></pre>
+
+<pre><code class='language-html' lang='html'>&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;</code></pre>
 <pre><code class='language-javascript' lang='javascript'>class Graph1 extends Somali.Scene {}
 new Graph1().build();
 </code></pre>
 
-
-
-<ul>
+<ol>
   <li>コンテナを用意する</li>
   <li><code>Somali.Scene</code>を継承したクラス<code>Graph1</code>を作成する</li>
   <li><code>new Graph().build()</code>とするとコンテナ内にグラフが作成される。</li>
-</ul>
-<p>&nbsp;</p>
+</ol>
 
-<p>デフォルトでは`id=&quot;container&quot;の要素をコンテナとして使用します。</p>
+<p>デフォルトでは<code>id=&quot;container&quot;</code>の要素をコンテナとして使用します。</p>
 
 <h2>図形を描く</h2>
 
@@ -42,19 +41,17 @@ new Graph1().build();
   }
 }
 </code></pre>
-<p>&nbsp;</p>
+
 <p><code>Somali</code>で図形やグリッドなどを表示する場合は、クラス内に<code>initNodes</code>というメソッドを定義します。</p>
-<p>このメソッドの引数には<code>shapes</code>と<code>groups</code>という図形を描画するための小道具が渡さるので、
+<p>このメソッドの引数には<code>shapes</code>と<code>groups</code>という図形を描画するための小道具が渡されるので、
 この<code>shapes</code>や<code>groups</code>を使って図形を作成し、作成した図形のリストを返却します。</p>
 <p>またデフォルトではコンテナとして<code>id=&quot;container&quot;</code>の要素が使われると説明しましたが、<code>get option() {}</code>を定義し、オプションでコンテナとして扱う要素の<code>id</code>を指定する事ができます。</p>
-<p>&nbsp;</p>
-
 
 <h2>guiからパラメータを操作する</h2>
 <div id="graph3"></div>
-<pre><code class='language-html' lang='html'>&lt;div id=&quot;graph3&quot;&gt;&lt;/div&gt;
+<pre><code>&lt;div id=&quot;graph3&quot;&gt;&lt;/div&gt;
 </code></pre>
-<pre><code class='language-javascript' lang='javascript'>class Graph3 extends Somali.Scene 
+<pre><code>class Graph3 extends Somali.Scene 
 {
   get option() {
     return {id:&quot;graph3&quot;, gui: true}
@@ -91,23 +88,21 @@ new Graph1().build();
 </code></pre>
 
 <p><code>Somali</code>では<a href='https://github.com/dataarts/dat.gui'>dat.gui</a>を使う事ができます。</p>
-<ul>
-<li><p>コンストラクタ内でGUIで扱うデータを定義する</p>
-</li>
-<li><p><code>initGUI</code>を定義し、その中でデータとGUIを関連付けます。
-initGUI<code>の引数には</code>dat.gui`のインスタンスが渡ってきます。</p>
-</li>
-<li><p><code>update</code>は毎フレームコールされるメソッドです、<code>this.nodes</code>で<code>initNodes</code>で作成した図形にアクセスできます。</p>
-</li>
-</ul>
+
+<ol>
+  <li>GUIを有効にするにはオプションに<code>gui:true</code>を追加します。</li>
+  <li>コンストラクタ内でGUIで扱うデータを定義する</li>
+  <li>GUIの設定は、<code>initGUI</code>を定義して行います。<code>initGUI</code>の引数には<code>dat.gui</code>のインスタンスが渡ってきます。</li>
+  <li><code>update</code>は毎フレームコールされるメソッドです、<code>this.nodes</code>で<code>initNodes</code>で作成した図形にアクセスできます。</li>
+</ol>
 
 
 <h2>アニメーション</h2>
 <div id="graph4"></div>
 
-<pre><code class='language-html' lang='html'>&lt;div id=&quot;graph4&quot;&gt;&lt;/div&gt;
+<pre><code>&lt;div id=&quot;graph4&quot;&gt;&lt;/div&gt;
 </code></pre>
-<pre><code class='language-javascript' lang='javascript'>class Graph4 extends Somali.Scene 
+<pre><code>class Graph4 extends Somali.Scene 
 {
   get option() {
     return {id:&quot;graph4&quot;}
