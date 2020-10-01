@@ -23,7 +23,7 @@ export default abstract class Shape extends Node {
   }
 
   dash(width:number) {
-    this.node.setAttr("dash", [this.coord.u2px(width)]); return this;
+    this.node.setAttr("dash", [width]); return this;
   }
 
   radius(radius:number) {

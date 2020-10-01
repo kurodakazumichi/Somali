@@ -131,11 +131,11 @@ export default class Scene
     this.props.groups.init(this.props.coord, this.props.shapes);
   }
 
-  draw() {
+  private draw() {
     this.layer?.draw();
   }
 
-  execute() 
+  private execute() 
   {
     if (!this.config.update) return;
     this.update();
