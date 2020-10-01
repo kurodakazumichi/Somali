@@ -32,7 +32,7 @@ new Graph1().build();
     return {id:&quot;graph2&quot;}
   }
 
-  initNodes(shapes, groups) {
+  createNodes(shapes, groups) {
     return {
       grid: groups.grid(),
       circle: shapes.circle().pos(0, 0).radius(3)
@@ -41,7 +41,7 @@ new Graph1().build();
 }
 </code></pre>
 
-<p><code>Somali</code>で図形やグリッドなどを表示する場合は、クラス内に<code>initNodes</code>というメソッドを定義します。</p>
+<p><code>Somali</code>で図形やグリッドなどを表示する場合は、クラス内に<code>createNodes</code>というメソッドを定義します。</p>
 <p>このメソッドの引数には<code>shapes</code>と<code>groups</code>という図形を描画するための小道具が渡されるので、
 この<code>shapes</code>や<code>groups</code>を使って図形を作成し、作成した図形のリストを返却します。</p>
 <p>またデフォルトではコンテナとして<code>id=&quot;container&quot;</code>の要素が使われると説明しましたが、<code>get option() {}</code>を定義し、オプションでコンテナとして扱う要素の<code>id</code>を指定する事ができます。</p>
@@ -71,7 +71,7 @@ new Graph1().build();
     gui.add(this.params, &quot;r&quot;).step(0.01);
   }
 
-  initNodes(shapes, groups) {
+  createNodes(shapes, groups) {
     return {
       grid: groups.grid(),
       circle: shapes.circle().pos(0, 0).radius(this.params.r),
@@ -92,7 +92,7 @@ new Graph1().build();
   <li>GUIを有効にするにはオプションに<code>gui:true</code>を追加します。</li>
   <li>コンストラクタ内でGUIで扱うデータを定義する</li>
   <li>GUIの設定は、<code>initGUI</code>を定義して行います。<code>initGUI</code>の引数には<code>dat.gui</code>のインスタンスが渡ってきます。</li>
-  <li><code>update</code>は毎フレームコールされるメソッドです、<code>this.nodes</code>で<code>initNodes</code>で作成した図形にアクセスできます。</li>
+  <li><code>update</code>は毎フレームコールされるメソッドです、<code>this.nodes</code>で<code>createNodes</code>で作成した図形にアクセスできます。</li>
 </ol>
 
 
@@ -111,7 +111,7 @@ new Graph1().build();
     super();
   }  
 
-  initNodes(shapes, groups) {
+  createNodes(shapes, groups) {
     return {
       grid: groups.grid(),
       circle: shapes.circle().pos(0, 0).radius(2).fill(Somali.sColor.red),

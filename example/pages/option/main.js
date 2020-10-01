@@ -8,7 +8,7 @@ class Graph1 extends Somali.Scene {
     }
   }
 
-  initNodes(shapes, groups) {
+  createNodes(shapes, groups) {
     return {
       grid: groups.grid(),
       circle: shapes.circle().pos(0, 0).radius(3)
@@ -23,7 +23,7 @@ class Graph2 extends Somali.Scene {
     }
   }
 
-  initNodes(shapes, groups) {
+  createNodes(shapes, groups) {
     return {
       grid: groups.grid(),
       circle: shapes.circle().pos(0, 0).radius(3)
@@ -41,7 +41,7 @@ class Graph3 extends Somali.Scene {
     }
   }
 
-  initNodes(shapes, groups) {
+  createNodes(shapes, groups) {
     return {
       grid: groups.grid(),
       circle: shapes.circle().pos(0, 0).radius(3)

@@ -102,8 +102,9 @@ export default class Scene
       this.initGui(this._gui);
     }
     
-    this.nodes = this.initNodes(this.props.shapes, this.props.groups);
+    this.nodes = this.createNodes(this.props.shapes, this.props.groups);
     this.addNodes(this.nodes);
+    this.initNodes(this.nodes);
     
     this.draw();
     this.execute();
@@ -154,8 +155,12 @@ export default class Scene
   }
 
   /** グラフに表示するNodeを生成し、オブジェクトで返す */
-  initNodes(shapes:Shapes, groups:Groups) {
+  createNodes(shapes:Shapes, groups:Groups) {
     return {}
+  }
+
+  /** ノードの初期化処理を記述する */
+  initNodes(nodes:{[key:string]:Node}) {
   }
 
   /** dat.guiの初期化用メソッド */
