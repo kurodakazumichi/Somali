@@ -71,7 +71,10 @@ export default class Scene
   private _gui:GUI|null = null;
 
   /** グラフに表示するNodeリスト */
-  private nodes:{[key:string]:Node} = {};  
+  private nodes:{[key:string]:Node} = {};
+
+  // タイマー
+  public timer:number = 0;
   
   //---------------------------------------------------------------------------
   // コンストラクタ
@@ -109,6 +112,7 @@ export default class Scene
   private initDOM() {
 
     this.dom.root = document.getElementById(this.config.id) as HTMLDivElement;
+    this.dom.root.className = "somali";
 
     this.dom.graph = util.div({className:"graph"});
     this.dom.root.appendChild(this.dom.graph);
