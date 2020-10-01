@@ -3,7 +3,7 @@
 
 body {
   font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-size:32px;
+  font-size:26px;
   color:#393939;
 }
 
@@ -11,7 +11,7 @@ article {
   padding:1em;
 
   h1 {
-    font-size:60px;
+    font-size:50px;
     font-weight: 600;
   
     &::after {
@@ -24,7 +24,7 @@ article {
   }
   
   h2 {
-    font-size:50px;
+    font-size:40px;
     font-weight: 600;
   
     &::after {
@@ -57,7 +57,7 @@ article {
     }
   }
   
-  li {
+  li:not([class]) {
     line-height: 1.5em;
     margin-bottom: 0.5em;
   }
