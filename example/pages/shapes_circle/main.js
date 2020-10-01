@@ -14,7 +14,7 @@ class Graph1 extends Somali.Scene
       fill: "#000",
       stroke: "#FFF",
       strokeWidth: 3,
-      dash:10,
+      dash:0,
       visible: true,
       draggable: true,
     }
