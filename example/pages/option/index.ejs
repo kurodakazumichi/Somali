@@ -1,0 +1,70 @@
+---
+title: オプション
+js: 
+  - main.js
+---
+<div id="graph1"></div>
+
+<p>
+  <code>Somali</code>ではオプションを指定する事でグラフのサイズや、グリッドの細かさなどをグラフごとに設定する事ができます。
+</p>
+
+<h2>デフォルト設定のグラフ</h2>
+
+<div id="graph2"></div>
+
+<pre><code>class Graph extends Somali.Scene {
+  initNodes(shapes, groups) {
+    return {
+      grid: groups.grid(),
+      circle: shapes.circle().pos(0, 0).radius(3)
+    }
+  }
+}
+</code></pre>
+
+<h2>オプションを利用したグラフ</h2>
+<div id="graph3"></div>
+
+<pre><code>class Graph extends Somali.Scene {
+  get option() {
+    return {
+      width : 800,
+      height: 400,
+      unit  : 25,      
+    }
+  }  
+
+  initNodes(shapes, groups) {
+    return {
+      grid: groups.grid(),
+      circle: shapes.circle().pos(0, 0).radius(3)
+    }
+  }
+}
+</code></pre>
+
+<p>
+  オプションでグラフのサイズを幅800, 高さ400に設定し、グリッドの細かさを25に設定すると以下のような見た目にする事ができます。
+</p>
+<p>
+  このように<code>Somali</code>はいくつかのオプションが用意されており、ある程度グラフをカスタマイズする事が可能です。
+</p>
+
+<h2>オプションの一覧</h2>
+<figure>
+  <table>
+    <thead>
+      <tr><th>option</th><th>型</th><th>解説</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>id</td><td>string</td><td>グラフを表示するコンテナのidを指定します。</td></tr>
+      <tr><td>width</td><td>number</td><td>グラフの幅を指定します。</td></tr>
+      <tr><td>height</td><td>number</td><td>グラフの高さを指定します。</td></tr>
+      <tr><td>unit</td><td>number</td><td>グリッドの細かさを指定します。グラフは</td></tr>
+      <tr><td>gui</td><td>boolean</td><td>guiを利用する場合はtrueを指定します。デフォルトでfalseです。</td></tr>
+      <tr><td>update</td><td>boolean</td><td>updateを利用しない場合はfalseを指定します。デフォルトでtrueです。</td></tr>
+    </tbody>
+  </table>
+</figure>
+  
