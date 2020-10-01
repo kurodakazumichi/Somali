@@ -94,6 +94,5 @@ exports.default = (done) => {
 }
 
 exports.build = series(
-  clean,
-  parallel(page, copy, js, css, scss)
+  scss, page, copy, js, css
 );
