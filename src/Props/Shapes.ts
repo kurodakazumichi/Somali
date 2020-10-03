@@ -68,10 +68,10 @@ export default class Shapes {
   }
   arrow() {
     return new Shape.Arrow(this.coord)
-      .pointerLength(0.1)
-      .pointerWidth(0.1)
+      .pointerLength(0.2)
+      .pointerWidth(0.2)
       .color(sColor.main)
-      .strokeWidth(2)
+      .strokeWidth(3)
   }
   text(v:string = "A") {
     return new Shape.Text(this.coord)
