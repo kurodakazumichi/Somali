@@ -168,7 +168,7 @@
 
 /*! exports provided: AxisXY, Grid */
 
-/*! exports provided: Circle, Rect, Line, Arrow, Star, Wedge, Text */
+/*! exports provided: Circle, Rect, Ellipse, Line, Arrow, Star, Wedge, Text */
 
 /*! exports provided: Scene, sColor */
 

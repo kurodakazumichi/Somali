@@ -25,6 +25,7 @@
     "dev:browser": "webpack --mode development --type browser",
     "build:browser": "webpack --type browser",
     "build:node": "webpack --type node",
+    "build": "yarn dev:browser & yarn build:browser & yarn build:node",
     "example": "gulp",
     "example:build": "gulp build"
   },
