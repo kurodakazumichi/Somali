@@ -26,6 +26,28 @@ export class Rect extends Shape
 }
 
 //-----------------------------------------------------------------------------
+// Ellipse
+//-----------------------------------------------------------------------------
+export class Ellipse extends Shape 
+{
+  protected createNode() {
+    return new Konva.Ellipse();
+  }
+
+  private get shape() {
+    return this.node as Konva.Ellipse;
+  }
+
+  rx(r:number) {
+    this.shape.radiusX(r); return this;
+  }
+
+  ry(r:number) {
+    this.shape.radiusY(r); return this;
+  }
+}
+
+//-----------------------------------------------------------------------------
 // Line
 //-----------------------------------------------------------------------------
 export class Line extends Shape 

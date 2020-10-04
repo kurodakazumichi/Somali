@@ -60,7 +60,13 @@ export default class Shapes {
       .height(1)
       .strokeWidth(2)
       .stroke(sColor.main)
-  }  
+  }
+  ellipse() {
+    return new Shape.Ellipse(this.coord)
+      .rx(2)
+      .ry(1)
+      .stroke(sColor.main)
+  }
   line() {
     return new Shape.Line(this.coord)
       .stroke(sColor.main)
@@ -104,6 +110,12 @@ export default class Shapes {
     return new Shape.Circle(this.coord)
       .fill(sColor.red)
       .radius(0.15);
+  }
+  pointer() {
+    return new Shape.Circle(this.coord)
+      .fill(sColor.green)
+      .radius(0.2)
+      .draggable(true);
   }
 
 
