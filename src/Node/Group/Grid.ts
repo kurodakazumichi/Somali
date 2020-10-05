@@ -29,6 +29,14 @@ export default class Grid extends Group {
     return this;
   }
 
+  labelX(text:string) {
+    this.labels[0].text(text); return this;
+  }
+  
+  labelY(text:string) {
+    this.labels[1].text(text); return this;
+  }
+
   //---------------------------------------------------------------------------
   // Private
   //---------------------------------------------------------------------------
