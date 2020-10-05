@@ -118,5 +118,30 @@ export default class Shapes {
       .draggable(true);
   }
 
+  aux() {
+    return new Shape.Line(this.coord)
+      .stroke(sColor.green)
+      .strokeWidth(1)
+      .dash(5)
+  }
 
+  cos() {
+    const points = [];
+
+    for(let i = this.coord.left; i <= this.coord.right; i += 0.1) {
+      points.push(i, Math.cos(i * Math.PI / 2))
+    }
+
+    return this.line().points(points);
+  }
+
+  sin() {
+    const points = [];
+
+    for(let i = this.coord.left; i <= this.coord.right; i += 0.1) {
+      points.push(i, Math.sin(i * Math.PI / 2))
+    }
+
+    return this.line().points(points);    
+  }
 }
