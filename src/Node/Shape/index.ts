@@ -39,11 +39,11 @@ export class Ellipse extends Shape
   }
 
   rx(r:number) {
-    this.shape.radiusX(r); return this;
+    this.shape.radiusX(this.coord.u2px(r)); return this;
   }
 
   ry(r:number) {
-    this.shape.radiusY(r); return this;
+    this.shape.radiusY(this.coord.u2px(r)); return this;
   }
 }
 
