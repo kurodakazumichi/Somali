@@ -14,6 +14,7 @@ interface IColorTable
   green:string;
   yellow:string;
   gray:string;
+  blue:string;
 }
 
 class sColor implements IColorTable
@@ -36,6 +37,8 @@ class sColor implements IColorTable
   set yellow(c)    { this.table.yellow = c; }
   get gray()       { return this.table.gray; }
   set gray(c)      { this.table.gray = c; }
+  get blue()       { return this.table.blue; }
+  set blue(c)      { this.table.blue = c; }
 
   /** dark color table */
   private table:IColorTable = {
@@ -48,6 +51,7 @@ class sColor implements IColorTable
     yellow    : "#EDAD0B",
     text      : "#FFFFFF",
     gray      : "#AAAAAA",
+    blue      : "#007AB7",
   }  
 }
 
