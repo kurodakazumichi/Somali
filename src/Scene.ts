@@ -82,7 +82,6 @@ export default class Scene
   constructor() 
   {
     this.execute = this.execute.bind(this);
-    this.config = Object.assign(this.config, this.option);
   }
 
   //---------------------------------------------------------------------------
@@ -90,6 +89,8 @@ export default class Scene
   //---------------------------------------------------------------------------  
   build() 
   {
+    this.config = Object.assign(this.config, this.option);
+
     this.initDOM();
     this.initProps();
 
