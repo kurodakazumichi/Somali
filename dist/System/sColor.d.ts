@@ -13,6 +13,7 @@ interface IColorTable {
     green: string;
     yellow: string;
     gray: string;
+    blue: string;
 }
 declare class sColor implements IColorTable {
     get backGround(): string;
@@ -33,6 +34,8 @@ declare class sColor implements IColorTable {
     set yellow(c: string);
     get gray(): string;
     set gray(c: string);
+    get blue(): string;
+    set blue(c: string);
     /** dark color table */
     private table;
 }

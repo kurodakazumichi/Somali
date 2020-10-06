@@ -12,5 +12,7 @@ export default class Groups {
     init(coord: Coord, shapes: Shapes): void;
     axisXY(): Group.AxisXY;
     grid(): Group.Grid;
+    cos(): Group.Cos;
+    sin(): Group.Sin;
 }
 //# sourceMappingURL=Groups.d.ts.map

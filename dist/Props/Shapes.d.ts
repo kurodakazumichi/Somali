@@ -21,5 +21,8 @@ export default class Shapes {
     wedge(): Shape.Wedge;
     point(): Shape.Circle;
     pointer(): Shape.Circle;
+    aux(): Shape.Line;
+    cos(): Shape.Line;
+    sin(): Shape.Line;
 }
 //# sourceMappingURL=Shapes.d.ts.map

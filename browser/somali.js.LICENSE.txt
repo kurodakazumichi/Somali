@@ -38,6 +38,8 @@
 
 /*! ./Context */
 
+/*! ./Cos */
+
 /*! ./DragAndDrop */
 
 /*! ./Factory */
@@ -75,6 +77,8 @@
 /*! ./Scene */
 
 /*! ./Shape */
+
+/*! ./Sin */
 
 /*! ./Stage */
 
@@ -166,7 +170,7 @@
 
 /*! dat.gui */
 
-/*! exports provided: AxisXY, Grid */
+/*! exports provided: AxisXY, Grid, Cos, Sin */
 
 /*! exports provided: Circle, Rect, Ellipse, Line, Arrow, Star, Wedge, Text */
 
@@ -217,6 +221,14 @@
 /*!******************************!*\
   !*** ./src/System/sColor.ts ***!
   \******************************/
+
+/*!*******************************!*\
+  !*** ./src/Node/Group/Cos.ts ***!
+  \*******************************/
+
+/*!*******************************!*\
+  !*** ./src/Node/Group/Sin.ts ***!
+  \*******************************/
 
 /*!********************************!*\
   !*** ./src/Node/Group/Grid.ts ***!

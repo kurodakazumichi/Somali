@@ -3,5 +3,7 @@
  *****************************************************************************/
 import AxisXY from './AxisXY';
 import Grid from './Grid';
-export { AxisXY, Grid, };
+import Cos from './Cos';
+import Sin from './Sin';
+export { AxisXY, Grid, Cos, Sin, };
 //# sourceMappingURL=index.d.ts.map

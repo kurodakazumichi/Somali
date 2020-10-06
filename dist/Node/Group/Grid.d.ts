@@ -8,6 +8,8 @@ export default class Grid extends Group {
     constructor(coord: Coord, shapes: Shapes);
     centerStroke(color: string): this;
     linesStroke(color: string): this;
+    labelX(text: string): this;
+    labelY(text: string): this;
     /** コンストラクタで呼び出す */
     private initilize;
     /** 中心軸を作成 */
