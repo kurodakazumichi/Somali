@@ -75,6 +75,13 @@ export class Line extends Shape
   lineJoin(join:string) {
     this.shape.lineJoin(join); return this;
   }
+  tension(v:number) {
+    this.shape.tension(v); return this;
+  }
+  bezier(f:boolean) {
+    this.shape.bezier(f); return this;
+  }
+
 }
 
 //-----------------------------------------------------------------------------
@@ -107,6 +114,12 @@ export class Arrow extends Shape
   }
   lineJoin(join:string) {
     this.shape.lineJoin(join); return this;
+  }  
+  tension(v:number) {
+    this.shape.tension(v); return this;
+  }
+  bezier(f:boolean) {
+    this.shape.bezier(f); return this;
   }  
 }
 
