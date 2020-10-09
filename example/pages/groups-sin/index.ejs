@@ -17,8 +17,8 @@ js:
   
     createNodes(shapes, groups) {
       return {
-        grid: groups.grid(),
-        cos : groups.sin(),
+        grid: groups.grid().labelX("θ").labelY("sin"),
+        sin : groups.sin(),
       }
     }
   }

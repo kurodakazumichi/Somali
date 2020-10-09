@@ -10,8 +10,8 @@ class Graph1 extends Somali.Scene
 
   createNodes(shapes, groups) {
     return {
-      grid: groups.grid(),
-      cos : groups.sin(),
+      grid: groups.grid().label("θ", "sin"),
+      sin : groups.sin(),
     }
   }
 }

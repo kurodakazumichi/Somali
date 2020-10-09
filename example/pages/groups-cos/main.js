@@ -10,7 +10,7 @@ class Graph1 extends Somali.Scene
 
   createNodes(shapes, groups) {
     return {
-      grid: groups.grid(),
+      grid: groups.grid().label("θ", "cos"),
       cos : groups.cos(),
     }
   }
