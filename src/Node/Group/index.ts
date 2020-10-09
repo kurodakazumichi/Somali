@@ -3,12 +3,14 @@
  *****************************************************************************/
 import AxisXY from './AxisXY';
 import Grid from './Grid';
-import Cos from './Cos';
 import Sin from './Sin';
+import Cos from './Cos';
+import Tan from './Tan';
 
 export { 
   AxisXY,
   Grid,
-  Cos,
   Sin,
+  Cos,
+  Tan,
 }

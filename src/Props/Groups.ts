@@ -29,10 +29,14 @@ export default class Groups
   grid() {
     return new Group.Grid(this.coord, this.shapes);
   }
+  sin() {
+    return new Group.Sin(this.coord, this.shapes);
+  }  
   cos() {
     return new Group.Cos(this.coord, this.shapes);
   }
-  sin() {
-    return new Group.Sin(this.coord, this.shapes);
+  tan() {
+    return new Group.Tan(this.coord, this.shapes);
   }
+
 }
